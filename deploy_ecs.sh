@@ -8,6 +8,11 @@ BUILD_ID=$5
 
 REPOSITORY=${ECR}/${SERVICE}
 
+# login ECR
+login="$(aws ecr get-login --region ap-northeast-1)"
+${login}
+
+
 # for backup
 docker tag ${SERVICE} ${REPOSITORY}:${BUILD_ID}
 docker push ${REPOSITORY}:${BUILD_ID}
